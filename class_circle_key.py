@@ -24,31 +24,24 @@ class Circle:
         elif keys[pygame.K_DOWN]:
             self.y += 3
 
+    def jump(self, key):
+        if key[pygame.K_SPACE]:
+            self.y -= 15
         else:
-            if self.x < 250:
-                self.x += 1
-            elif self.x > 250:
-                self.x -= 1
-
-            if self.y < 250:
-                self.y += 1
-            elif self.y > 250:
-                self.y -= 1
-
-    def jump(self):
+            if self.y < 400:
+                self.y += 15
 
     
-
-circle1 = Circle(250, 250, 30)
+circle1 = Circle(250, 400, 30)
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
 
-
     # передвижение круга
     keys1 = pygame.key.get_pressed()
     circle1.move_by_keys(keys1)
+    circle1.jump(keys1)
     circle1.draw()
     pygame.time.delay(10)
